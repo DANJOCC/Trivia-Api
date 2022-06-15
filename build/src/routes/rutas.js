@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const openTriviaQuestions_1 = require("../controllers/openTriviaQuestions");
+const bouncer_1 = require("../controllers/bouncer");
+const route = (0, express_1.Router)();
+route.get("/question", openTriviaQuestions_1.openTrivia.getQuestion);
+route.post("/login", bouncer_1.entry.login);
+route.post("/register", bouncer_1.entry.register);
+exports.default = route;
