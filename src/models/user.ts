@@ -1,13 +1,14 @@
 import {Schema, model, Model} from "mongoose";
-import whatever from "../interfaces/whatever";
+import userObject from "../interfaces/userObject";
 
-const userSchema: Schema= new Schema<whatever>({
+
+const userSchema: Schema= new Schema<userObject>({
     username: {type: String, required:true},
     email: {type: String, required:true},
     password: {type: String, required:true}
 })
 
-const Users:Model<whatever>= model('Users', userSchema)
+const Users:Model<userObject>= model('Users', userSchema)
 
 export default Users
 
