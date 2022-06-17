@@ -8,15 +8,15 @@ class Ranking{
 
     //agregar nuevos puntuajes al ranking global
 
-    private async updateUserScoreData(Username:string,data:number, category:string,):Promise<void>{
+    private async updateUserScoreData(Username:string,data:number, category:string,):Promise<String>{
         let user= await User.findOne({username:Username})
 
         if(user===null)
-            Promise.reject('es null')
+            return 'es null'
         else{
             category==='rush'? user.rush=data: user.normal=data
             user.save()
-            Promise.resolve('Usuario actualizado')
+           return 'Usuario actualizado'
         }
     }
 
@@ -31,7 +31,7 @@ class Ranking{
 
     public async newScore(req:Request, res:Response):Promise<void>{
         const {username, data, category}=req.body
-        Ranking.prototype.updateUserScoreData(username,data, category).then(resolve=>res.send('Actualizado'))   
+        Ranking.prototype.updateUserScoreData(username,data, category).then(resolve=>res.send(resolve))   
     }
 
     //llamada a bestScores
