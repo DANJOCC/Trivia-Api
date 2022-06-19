@@ -15,11 +15,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.openTrivia = void 0;
 const cross_fetch_1 = __importDefault(require("cross-fetch"));
 class openTriviaQuestions {
-    getQuestion(req, res) {
+    getData(req, res, url) {
         return __awaiter(this, void 0, void 0, function* () {
-            let response = yield (0, cross_fetch_1.default)("https://opentdb.com/api.php?amount=10&category=17&difficulty=easy&type=boolean");
+            let response = yield (0, cross_fetch_1.default)(url);
             let data = yield response.json();
             res.status(200).send(data);
+        });
+    }
+    getNormalQuestions(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let difficulty = req.body.difficulty;
+            openTriviaQuestions.prototype.getData(req, res, `https://opentdb.com/api.php?amount=10&category=9&difficulty=${difficulty}&type=multiple`);
+        });
+    }
+    getRushQuestions(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let difficulty = req.body.difficulty;
+            let amount = req.body.amount;
+            openTriviaQuestions.prototype.getData(req, res, `https://opentdb.com/api.php?amount=${amount}&category=9&difficulty=${difficulty}&type=multiple`);
         });
     }
 }
