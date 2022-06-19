@@ -37,7 +37,8 @@ class Ranking{
     //llamada a bestScores
 
     public async getBestScores(req:Request, res:Response):Promise<void>{
-        Ranking.prototype.bestScores(req.body.mode).then(resolve=>res.send(resolve))
+        let mode: string | any = req.query.mode;
+        Ranking.prototype.bestScores(mode).then(resolve=>res.send(resolve))
     }
 }
 

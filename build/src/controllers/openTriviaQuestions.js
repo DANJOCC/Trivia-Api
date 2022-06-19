@@ -24,15 +24,15 @@ class openTriviaQuestions {
     }
     getNormalQuestions(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            let difficulty = req.body.difficulty;
-            openTriviaQuestions.prototype.getData(req, res, `https://opentdb.com/api.php?amount=10&category=9&difficulty=${difficulty}&type=multiple`);
+            let difficulty = req.query.difficulty;
+            openTriviaQuestions.prototype.getData(req, res, `https://opentdb.com/api.php?amount=10&category=9&difficulty=${difficulty}&type=multiple&encode=url3986`);
         });
     }
     getRushQuestions(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            let difficulty = req.body.difficulty;
-            let amount = req.body.amount;
-            openTriviaQuestions.prototype.getData(req, res, `https://opentdb.com/api.php?amount=${amount}&category=9&difficulty=${difficulty}&type=multiple`);
+            let difficulty = req.query.difficulty;
+            let amount = req.query.amount;
+            openTriviaQuestions.prototype.getData(req, res, `https://opentdb.com/api.php?amount=${amount}&category=9&difficulty=${difficulty}&type=multiple&encode=url3986`);
         });
     }
 }

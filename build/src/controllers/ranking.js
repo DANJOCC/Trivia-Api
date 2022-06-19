@@ -47,7 +47,8 @@ class Ranking {
     //llamada a bestScores
     getBestScores(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            Ranking.prototype.bestScores(req.body.mode).then(resolve => res.send(resolve));
+            let mode = req.query.mode;
+            Ranking.prototype.bestScores(mode).then(resolve => res.send(resolve));
         });
     }
 }
