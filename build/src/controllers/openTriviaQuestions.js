@@ -15,11 +15,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.openTrivia = void 0;
 const cross_fetch_1 = __importDefault(require("cross-fetch"));
 class openTriviaQuestions {
+    decoder(objecto) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log(objecto.results[0]);
+            const data = objecto.results;
+            console.log(data);
+            for (const question of data) {
+                question.question = decodeURIComponent(question.question);
+                question.correct_answer = decodeURIComponent(question.correct_answer);
+                question.incorrect_answers[0] = decodeURIComponent(question.incorrect_answers[0]);
+                question.incorrect_answers[1] = decodeURIComponent(question.incorrect_answers[1]);
+                question.incorrect_answers[2] = decodeURIComponent(question.incorrect_answers[2]);
+            }
+            return data;
+        });
+    }
     getData(req, res, url) {
         return __awaiter(this, void 0, void 0, function* () {
             let response = yield (0, cross_fetch_1.default)(url);
-            let data = yield response.json();
-            res.status(200).send(data);
+            let thing = yield response.json();
+            openTriviaQuestions.prototype.decoder(thing).then(data => res.status(200).send(data));
         });
     }
     getNormalQuestions(req, res) {
