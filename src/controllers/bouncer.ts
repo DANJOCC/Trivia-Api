@@ -1,6 +1,7 @@
 import connection from "../utils/database"
 import Users from "../models/user"
 import {Response, Request} from 'express'
+import UserScore from "../models/userScore"
 
 connection()
 
@@ -24,7 +25,13 @@ class Bouncer{
                 email:req.body.email,
                 password:req.body.password
             })
+            let newUserScore=await new UserScore({
+                username:req.body.username,
+                rush:0,
+                normal:0
+            })
             await newUser.save()
+            await newUserScore.save()
             res.status(202).send("usuario registrado")
         }
         else if(user.username === req.body.username || user.email===req.body.email){
