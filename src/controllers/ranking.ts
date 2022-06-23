@@ -23,7 +23,7 @@ class Ranking{
     //obtener los mejores 10 del mundo en una categoria
 
     private async bestScores(mode:string):Promise<Array<any>>{
-        let scores= await User.find().sort(`-${mode}`).limit(10).exec()
+        let scores= await User.find().sort(`-${mode}`).exec()
         return scores
     }
 
